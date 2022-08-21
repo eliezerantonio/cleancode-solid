@@ -1,7 +1,5 @@
 (() => {
 
-
-  
     function isRedFruit(fruit: string): boolean {
         
         const redFruits = ['manzana', 'cereja', 'ciruela'];
@@ -10,10 +8,9 @@
       
     }
 
-  
 
     //with object literal
-    type FruitColor ='red' | 'yellow' | 'purple'
+    type FruitColor = 'red' | 'yellow' | 'purple';
     function getFruitsByColor( color: FruitColor ): string[] {
        
         const fruitsByColor = {
@@ -24,7 +21,6 @@
     }
         if (!Object.keys(fruitsByColor).includes(color)) {
             
-
             throw Error('the color must be: red, yellow, purple');
         }
         return fruitsByColor[color];
@@ -53,8 +49,8 @@
     console.log({ isRedFruit: isRedFruit('piña'), fruit: 'piña' }); // true
 
     //getFruitsByColor
-    console.log({ redFruits: getFruitsByColor('red') }); // ['manzana', 'fresa']
-    console.log({ yellowFruits: getFruitsByColor('yellow') }); // ['piña', 'banana']
+    console.log({ redFruits: getFruitsByColor('red') });         // ['manzana', 'fresa']
+    console.log({ yellowFruits: getFruitsByColor('yellow') });  // ['piña', 'banana']
     console.log({ purpleFruits: getFruitsByColor('purple') }); // ['moras', 'uvas']
     // console.log({ pinkFruits: getFruitsByColor('pink') }); // Error: the color must be: red, yellow, purple
 
