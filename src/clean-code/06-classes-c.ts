@@ -1,6 +1,7 @@
 (() => {
 
     //  aplicando el principio de responsabilidad única
+    //  priorizar a composicao frente a heranca
 
     type Gender = 'M' | 'F';
 
@@ -25,27 +26,23 @@
     }
 
     interface UserProps{
-        birthdate: Date;
         email: string;
-        gender: Gender;
-        name: string;
         role: string;
     
 }
-    class User extends Person {
+    class User  {
         
-        public lastAccess: Date;
         public email: string;
+        public lastAccess: Date;
         public role: string;
 
         constructor(
-            {birthdate,
+            {
             email ,
-            gender,
-            name ,
-            role ,}:UserProps
+            role,
+            }: UserProps
         ) {
-            super( {name, gender, birthdate });
+           
             this.lastAccess = new Date();
             this.email = email;
             this.role = role;
@@ -58,6 +55,26 @@
 
 
 
+    interface SettingsProps{
+      
+        lastOpenFolder: string;
+        workingDirectory: string;
+    }
+    class Settings  {
+
+        public workingDirectory: string
+        public lastOpenFolder: string;
+
+        constructor(
+       { 
+        lastOpenFolder,
+       
+        workingDirectory,}:SettingsProps
+        ) {
+            this.lastOpenFolder = lastOpenFolder;
+            this.workingDirectory= workingDirectory;
+        }
+    }
     interface UserSettingsProps{
         birthdate: Date;
         email: string;
@@ -67,27 +84,18 @@
         role: string;
         workingDirectory: string;
     }
-    class UserSettings extends User {
+    class UserSettings {
+        public person: Person;
+        public user: User;
+        public settings: Settings
+        
 
-        public workingDirectory: string
-        public lastOpenFolder: string;
-
-        constructor(
-       { birthdate,
-        email,
-        gender,
-        lastOpenFolder,
-        name,
-        role,
-        workingDirectory,}:UserSettingsProps
-        ) {
-            super({ email, role, name, gender, birthdate });
-            this.lastOpenFolder = lastOpenFolder;
-            this.workingDirectory= workingDirectory;
+        constructor({ name, gender, birthdate, email, role,lastOpenFolder,workingDirectory }: UserSettingsProps) {
+            this.person = new Person({name, gender, birthdate,} );
+            this.user = new User({ email, role })
+            this.settings = new Settings({lastOpenFolder,workingDirectory})
         }
-    }
-
-
+}
     const userSettings = new UserSettings(
        { workingDirectory:'/usr/home',
         lastOpenFolder:'/home',
