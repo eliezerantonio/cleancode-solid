@@ -13,7 +13,7 @@ const Singleton = (function () {
             }
             return instance;
         }
-    };
+    }; 
 })();
 
 function main() {
